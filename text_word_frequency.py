@@ -13,6 +13,20 @@ def open_and_read_file():
     # return the full text as a complete string
     return(data)
 
+def split_text_into_words(data):
+    # Converting complete string into list of words
+    word_list = data.split(' ')
+    word_counts = {}
+    # Looping through each word and keeping track of frequency
+    for word in word_list:
+        if(word in word_counts):
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
+    return(word_counts)
+
 # Open file from user input and read text file
 data = open_and_read_file()
-print(data)
+# Grab all the word counts
+word_counts = split_text_into_words(data)
+print(word_counts)
