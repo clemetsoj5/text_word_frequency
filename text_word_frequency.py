@@ -11,6 +11,7 @@ def open_and_read_file():
     with open(path, 'r') as file:
         data = file.read().replace('\n', '')
         data = re.sub(r'[^a-zA-Z0-9\s]', '', data)
+        data = re.sub(r'[^\w\s]+', '', data)
     # return the full text as a complete string
     return(data)
 
@@ -43,4 +44,13 @@ data = open_and_read_file()
 word_counts = split_text_into_words(data)
 # Find the top 10 items
 top_word_counts = find_top_ten(word_counts)
-print(top_word_counts)
+
+print("***********************************************************************")
+print("* The top frequent items inside your text is the following:            ")
+# Loops through each key value pair in the frequent word dictionary 
+for i in range(len(top_word_counts)):
+    # Converts each key value pair to a list and prints the top ten values out
+    current_word = list(top_word_counts.items())[i]
+    print("* # {}: '{}' found {} times.".format(i+1, current_word[0], current_word[1]))
+
+
